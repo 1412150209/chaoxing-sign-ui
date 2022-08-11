@@ -1,4 +1,4 @@
-const baseUrl = 'https://lers.top/chaoxing'
+const baseUrl = 'https://chaoxing.lers.top'
 
 export const login_api = baseUrl + '/login'
 
