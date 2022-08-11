@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://lers.top/chaoxing'
 
 export const login_api = baseUrl + '/login'
 
