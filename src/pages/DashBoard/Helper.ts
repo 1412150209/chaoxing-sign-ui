@@ -71,32 +71,32 @@ export const getuvToken = async (userParams: UserParamsType) => {
 }
 
 // [默认] 使用浏览器解析ENC，成功率较低
-export const parseEnc = (file: File): Promise<string> => {
-  return new Promise((resolve) => {
-    const url = window.URL || window.webkitURL
-    const img = new Image()
-    const qrcode = new Decoder()
-    img.src = url.createObjectURL(file)
-    qrcode.scan(img.src).then(result => {
-      resolve(result.data.split('=').pop() as string)
-    }).catch((reason) => {
-      console.log(reason)
-      resolve('识别失败')
-    })
-  })
-}
+// export const parseEnc = (file: File): Promise<string> => {
+//   return new Promise((resolve) => {
+//     const url = window.URL || window.webkitURL
+//     const img = new Image()
+//     const qrcode = new Decoder()
+//     img.src = url.createObjectURL(file)
+//     qrcode.scan(img.src).then(result => {
+//       resolve(result.data.split('=').pop() as string)
+//     }).catch((reason) => {
+//       console.log(reason)
+//       resolve('识别失败')
+//     })
+//   })
+// }
 
 // [推荐] 使用腾讯云OCR解析ENC，请在cli项目中配置secretId和secretKey
-// export const parseEnc = async (inputFile: File) => {
-//   let data = new FormData()
-//   data.append("file", inputFile)
-//   let res = await axios.post(ocr_api, data, {
-//     headers: {
-//       'Content-type': 'multipart/form-data'
-//     }
-//   })
-//   return res.data
-// }
+export const parseEnc = async (inputFile: File) => {
+  let data = new FormData()
+  data.append("file", inputFile)
+  let res = await axios.post(ocr_api, data, {
+    headers: {
+      'Content-type': 'multipart/form-data'
+    }
+  })
+  return res.data
+}
 
 export const uploadFile = async (userParams: UserParamsType, inputFile: File, token: string) => {
   // 填入FormData
